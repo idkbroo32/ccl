@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: ranchi-mart
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: DATABASE_URL
+        sync: false
