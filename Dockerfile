@@ -12,4 +12,4 @@ COPY . /var/www/html/
 RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 10000
-CMD ["sh", "-c", "sed -i 's/Listen 80/Listen ${PORT:-10000}/' /etc/apache2/ports.conf /etc/apache2/sites-available/000-default.conf && apache2-foreground"]
+CMD ["sh", "-c", "PORT=\"${PORT:-10000}\"; sed -i -E \"s/^Listen .*/Listen ${PORT}/\" /etc/apache2/ports.conf; sed -i -E \"s#<VirtualHost [*]:[0-9]+>#<VirtualHost *:${PORT}>#\" /etc/apache2/sites-available/000-default.conf; exec apache2-foreground"]
