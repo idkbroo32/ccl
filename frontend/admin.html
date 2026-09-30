@@ -1,1 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — Ranchi Mart</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="admin-body">
 
+  <!-- ADMIN LOGIN VIEW -->
+  <div id="adminLoginScreen" class="admin-page" style="display: none;">
+    <div class="admin-login-card">
+      <div class="admin-login-brand">
+        <span class="admin-login-icon">⚡</span>
+        <h2>Ranchi Mart Admin Portal</h2>
+        <p>Fulfillment Hub Management &amp; Catalog Control Center</p>
+      </div>
+
+      <!-- Auth Switcher -->
+      <div class="admin-auth-tabs">
+        <button type="button" class="auth-tab-btn is-active" id="tabBtnLogin" onclick="switchLoginTab('login')">
+          <i class="fa-solid fa-right-to-bracket"></i> Sign In as Admin
+        </button>
+        <button type="button" class="auth-tab-btn" id="tabBtnRegister" onclick="switchLoginTab('register')">
+          <i class="fa-solid fa-user-plus"></i> Create New Admin
+        </button>
+      </div>
+
+      <!-- Flash Notification Box -->
+      <div id="loginAlertBox" class="admin-message" style="display: none; margin-bottom: 18px;"></div>
+
+      <!-- 1-Click Verified Hub Managers -->
+      <div id="loginPanelExisting">
+        <div class="admin-quick-managers">
+          <p class="quick-mgr-title"><strong>⚡ 1-Click Instant Login (Click Any Manager to Enter):</strong></p>
+          <div class="mgr-quick-grid">
+            <button type="button" class="mgr-quick-btn mgr-hq-btn active-mgr" onclick="instantLoginManager('admin')">
+              <span class="hq-icon">👑</span>
+              <div>
+                <strong>Headquarters Admin</strong>
+                <span>Master HQ (admin / admin123)</span>
+              </div>
+            </button>
+            <button type="button" class="mgr-quick-btn" onclick="instantLoginManager('rajesh')">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Rajesh Sharma" />
+              <div>
+                <strong>Rajesh Sharma</strong>
+                <span>Main Road Super Hub</span>
+              </div>
+            </button>
+            <button type="button" class="mgr-quick-btn" onclick="instantLoginManager('pooja')">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" alt="Pooja Verma" />
+              <div>
+                <strong>Pooja Verma</strong>
+                <span>Lalpur Express Hub</span>
+              </div>
+            </button>
+            <button type="button" class="mgr-quick-btn" onclick="instantLoginManager('amitabh')">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="Amitabh Roy" />
+              <div>
+                <strong>Amitabh Roy</strong>
+                <span>Doranda Regional Hub</span>
+              </div>
+            </button>
+            <button type="button" class="mgr-quick-btn" onclick="instantLoginManager('sunita')">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&q=80" alt="Sunita Singh" />
+              <div>
+                <strong>Sunita Singh</strong>
+                <span>Kanke Quick Store</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <form class="admin-form" id="manualLoginForm" onsubmit="handleManualLogin(event)">
+          <label>
+            Admin Username or Email
+            <input type="text" id="loginUsername" value="admin" required placeholder="admin or manager username" autofocus />
+          </label>
+
+          <label>
+            Password
+            <div class="password-wrapper">
+              <input type="password" id="loginPassword" value="admin123" placeholder="admin123" required />
+              <button type="button" class="btn-toggle-eye" onclick="togglePass('loginPassword', this)">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </label>
+
+          <button type="submit" class="admin-submit-btn">
+            Sign In to Admin Dashboard <span>→</span>
+          </button>
+        </form>
+
+        <div class="admin-login-hint">
+          <p><strong>Available Credentials:</strong></p>
+          <code>admin / rajesh / pooja / amitabh / sunita (Password: admin123)</code>
+        </div>
+      </div>
+
+      <!-- Registration Panel -->
+      <div id="loginPanelRegister" style="display: none;">
+        <div class="reg-panel-intro">
+          <h3><i class="fa-solid fa-user-shield"></i> Register New Hub Admin</h3>
+          <p>Create credentials for a new store manager or local fulfillment center.</p>
+        </div>
+        <form class="admin-form" id="registerAdminForm" onsubmit="handleRegisterAdmin(event)">
+          <div class="admin-form-grid-2">
+            <label>Full Name *<input type="text" id="regName" required placeholder="e.g. Alok Verma" /></label>
+            <label>Admin Username *<input type="text" id="regUsername" required placeholder="e.g. alok" /></label>
+          </div>
+          <div class="admin-form-grid-2">
+            <label>Official Email *<input type="email" id="regEmail" required placeholder="alok@ranchimart.com" /></label>
+            <label>Password *<input type="password" id="regPassword" required value="admin123" /></label>
+          </div>
+          <div class="admin-form-grid-2">
+            <label>Hub Center Name<input type="text" id="regHubName" placeholder="e.g. Ranchi Mart Hinoo Express Hub" /></label>
+            <label>Neighborhood / Pincodes<input type="text" id="regPincodes" placeholder="e.g. 834002" /></label>
+          </div>
+          <button type="submit" class="admin-submit-btn" style="margin-top: 10px;">
+            <i class="fa-solid fa-shield-halved"></i> Create Hub Admin Account
+          </button>
+        </form>
+      </div>
+
+      <div style="text-align: center; margin-top: 24px;">
+        <a href="index.html" class="auth-back-link">← Back to Ranchi Mart Storefront</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MAIN ADMIN DASHBOARD (ACTIVE WHEN LOGGED IN) -->
+  <div id="adminDashboardScreen" class="admin-shell" style="display: none;">
+
+    <!-- TOP BAR -->
+    <header class="admin-topbar">
+      <div class="admin-topbar-left">
+        <a href="admin.html" class="admin-brand-link">
+          <span class="admin-brand-icon">⚡</span>
+          <div class="brand-text-wrap">
+            <span class="brand-title">Ranchi Mart Management</span>
+            <small class="brand-subtitle" id="topbarSubtitle">Fulfillment Hub Control Desk</small>
+          </div>
+        </a>
+      </div>
+
+      <div class="admin-topbar-center">
+        <div class="admin-hub-badge">
+          <span class="hub-pulse-dot"></span>
+          <span class="hub-label">Operating Hub:</span>
+          <strong id="topbarHubName">Ranchi Mart Central Headquarters</strong>
+        </div>
+      </div>
+
+      <div class="admin-topbar-right">
+        <div class="admin-user-pill">
+          <img id="topbarAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Avatar" class="admin-avatar-mini" />
+          <div class="admin-user-info">
+            <strong id="topbarAdminName">Abhishek Kumar</strong>
+            <span id="topbarAdminRole">Headquarters Administrator</span>
+          </div>
+        </div>
+
+        <a href="index.html" class="admin-top-btn btn-store-link" title="Open customer storefront in new view">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Storefront ↗
+        </a>
+
+        <button type="button" class="admin-top-btn btn-logout" onclick="handleAdminLogout()">
+          <i class="fa-solid fa-power-off"></i> Logout
+        </button>
+      </div>
+    </header>
+
+    <!-- DASHBOARD CONTAINER -->
+    <div class="admin-main-wrap">
+
+      <!-- Dynamic Message Alert -->
+      <div id="dashAlertBox" class="admin-message" style="display: none;"></div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="admin-stats-strip">
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon icon-orders"><i class="fa-solid fa-boxes-packing"></i></div>
+          <div class="admin-stat-body">
+            <span class="admin-stat-label">Total Orders</span>
+            <strong class="admin-stat-value" id="statTotalOrders">1</strong>
+            <small class="admin-stat-sub">Lifetime customer orders</small>
+          </div>
+        </div>
+
+        <div class="admin-stat-card stat-alert-pending" id="statPendingCard">
+          <div class="admin-stat-icon icon-pending"><i class="fa-solid fa-clock-rotate-left"></i></div>
+          <div class="admin-stat-body">
+            <span class="admin-stat-label">Pending Orders</span>
+            <strong class="admin-stat-value text-amber" id="statPendingOrders">0</strong>
+            <small class="admin-stat-sub" id="statPendingSub">All orders confirmed</small>
+          </div>
+        </div>
+
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon icon-transit"><i class="fa-solid fa-truck-fast"></i></div>
+          <div class="admin-stat-body">
+            <span class="admin-stat-label">Out for Delivery</span>
+            <strong class="admin-stat-value" id="statTransitOrders">1</strong>
+            <small class="admin-stat-sub">Rider dispatched</small>
+          </div>
+        </div>
+
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon icon-products"><i class="fa-solid fa-layer-group"></i></div>
+          <div class="admin-stat-body">
+            <span class="admin-stat-label">Catalog Products</span>
+            <strong class="admin-stat-value" id="statProductsCount">8</strong>
+            <small class="admin-stat-sub">Active in store catalog</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- NAVIGATION TABS -->
+      <nav class="admin-tabs-nav">
+        <button type="button" class="admin-tab-btn is-active" onclick="switchAdminTab('tabOrders')" id="btnTabOrders">
+          <i class="fa-solid fa-receipt"></i> Orders &amp; Dispatch Desk
+          <span class="tab-counter-badge" id="badgePendingCount">0</span>
+        </button>
+
+        <button type="button" class="admin-tab-btn" onclick="switchAdminTab('tabAddProduct')" id="btnTabAddProduct">
+          <i class="fa-solid fa-plus-circle"></i> Add New Product
+        </button>
+
+        <button type="button" class="admin-tab-btn" onclick="switchAdminTab('tabProducts')" id="btnTabProducts">
+          <i class="fa-solid fa-boxes-stacked"></i> Live Inventory &amp; Catalog
+        </button>
+
+        <button type="button" class="admin-tab-btn" onclick="switchAdminTab('tabHubs')" id="btnTabHubs">
+          <i class="fa-solid fa-network-wired"></i> Physical Hubs &amp; Admins
+        </button>
+      </nav>
+
+      <!-- TAB 1: ORDERS & DISPATCH RADAR -->
+      <section id="tabOrders" class="admin-tab-content active-content">
+        <div class="admin-section-header">
+          <div>
+            <h2>Customer Orders &amp; Dispatch Radar</h2>
+            <p class="section-desc">Manage order fulfillment status and provide live tracking notes for customers.</p>
+          </div>
+          <div class="filter-pills-bar">
+            <button type="button" class="filter-pill is-active" onclick="filterOrders('all', this)">All Orders</button>
+            <button type="button" class="filter-pill pill-pending" onclick="filterOrders('pending', this)">Pending</button>
+            <button type="button" class="filter-pill" onclick="filterOrders('confirmed', this)">Confirmed</button>
+            <button type="button" class="filter-pill" onclick="filterOrders('transit', this)">Out for Delivery</button>
+            <button type="button" class="filter-pill" onclick="filterOrders('delivered', this)">Delivered</button>
+          </div>
+        </div>
+
+        <div id="ordersContainer" class="admin-orders-list">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- TAB 2: ADD NEW PRODUCT -->
+      <section id="tabAddProduct" class="admin-tab-content">
+        <div class="admin-section-header">
+          <div>
+            <h2>Add New Product to Store Catalog</h2>
+            <p class="section-desc">Publish a new product. It will immediately appear on the customer storefront homepage.</p>
+          </div>
+        </div>
+
+        <div class="admin-card-surface form-card-wrap">
+          <form id="addProductForm" onsubmit="handleAddNewProduct(event)" class="product-creation-form">
+            <div class="form-row-2">
+              <label>
+                <strong>Product Title / Name *</strong>
+                <input type="text" id="newProdName" required placeholder="e.g. Organic Mountain Green Tea (100g)" />
+              </label>
+
+              <label>
+                <strong>Store Category *</strong>
+                <select id="newProdCategory" required>
+                  <option value="Groceries">Groceries &amp; Daily Essentials</option>
+                  <option value="Electronics">Electronics &amp; Smart Tech</option>
+                  <option value="Fashion">Fashion &amp; Everyday Wear</option>
+                  <option value="Home & Kitchen">Home &amp; Kitchen Essentials</option>
+                  <option value="Beauty">Beauty &amp; Personal Care</option>
+                  <option value="Health">Health &amp; Wellness</option>
+                  <option value="Books & Stationary">Books &amp; Stationary</option>
+                  <option value="Hair Accessories">Hair Accessories &amp; Styling</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="form-row-3">
+              <label>
+                <strong>Selling Price (₹) *</strong>
+                <input type="number" id="newProdPrice" required min="1" step="1" placeholder="499" />
+              </label>
+
+              <label>
+                <strong>Initial Stock Quantity *</strong>
+                <input type="number" id="newProdStock" required min="1" step="1" value="50" />
+              </label>
+
+              <label>
+                <strong>Target Collection</strong>
+                <select id="newProdGender">
+                  <option value="unisex">Unisex / All Shoppers</option>
+                  <option value="women">Women Collection</option>
+                  <option value="men">Men Collection</option>
+                  <option value="kids">Kids &amp; Family</option>
+                </select>
+              </label>
+            </div>
+
+            <!-- Image Selection -->
+            <div class="form-group-block">
+              <label><strong>Product Image</strong></label>
+              <div class="image-source-tabs" style="margin-bottom: 10px;">
+                <span class="sub-hint">Enter an online image URL, choose a preset, or select a photo:</span>
+              </div>
+
+              <div class="preset-images-picker" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px;">
+                <button type="button" class="preset-img-chip is-selected" onclick="selectPresetImg('photos/box1__image.png', this)">
+                  <img src="photos/box1__image.png" alt="preset" /> Daily Care
+                </button>
+                <button type="button" class="preset-img-chip" onclick="selectPresetImg('photos/box4_image.png', this)">
+                  <img src="photos/box4_image.png" alt="preset" /> Speaker
+                </button>
+                <button type="button" class="preset-img-chip" onclick="selectPresetImg('photos/box5_image.png', this)">
+                  <img src="photos/box5_image.png" alt="preset" /> Study Desk
+                </button>
+                <button type="button" class="preset-img-chip" onclick="selectPresetImg('photos/box7_image.png', this)">
+                  <img src="photos/box7_image.png" alt="preset" /> Health Drink
+                </button>
+                <button type="button" class="preset-img-chip" onclick="selectPresetImg('photos/box8_image.png', this)">
+                  <img src="photos/box8_image.png" alt="preset" /> Cotton Tee
+                </button>
+              </div>
+
+              <div class="form-row-2">
+                <label>
+                  Direct Image Web URL (Optional)
+                  <input type="url" id="newProdImageUrl" placeholder="https://images.unsplash.com/photo-..." />
+                </label>
+                <label>
+                  Local Image Upload (Optional)
+                  <input type="file" id="newProdImageFile" accept="image/*" onchange="previewSelectedFile(this)" />
+                </label>
+              </div>
+              <input type="hidden" id="selectedPresetImg" value="photos/box1__image.png" />
+            </div>
+
+            <label>
+              <strong>Product Description *</strong>
+              <textarea id="newProdDesc" rows="3" required placeholder="Describe highlights, material, benefits, or flavor..."></textarea>
+            </label>
+
+            <div style="display: flex; gap: 12px; margin-top: 14px;">
+              <button type="submit" class="admin-submit-btn" style="flex: 1; padding: 14px 20px;">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Publish Product To Storefront 🚀
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- TAB 3: INVENTORY & CATALOG -->
+      <section id="tabProducts" class="admin-tab-content">
+        <div class="admin-section-header">
+          <div>
+            <h2>Live Inventory &amp; Catalog Management</h2>
+            <p class="section-desc">View existing products, monitor stock counts, and delete old or out-of-stock items.</p>
+          </div>
+          <div class="table-search-box">
+            <input type="text" id="inventorySearchInput" placeholder="Search by name or category..." oninput="filterInventoryTable()" />
+          </div>
+        </div>
+
+        <div class="admin-table-container">
+          <table class="admin-data-table">
+            <thead>
+              <tr>
+                <th style="width: 70px;">Image</th>
+                <th>Product Title</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Status</th>
+                <th style="width: 110px; text-align: center;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 4: PHYSICAL HUBS & ADMINS -->
+      <section id="tabHubs" class="admin-tab-content">
+        <div class="admin-section-header">
+          <div>
+            <h2>Verified Physical Hubs &amp; Store Admins</h2>
+            <p class="section-desc">5 Physical local fulfillment centers powering fast 30-minute Ranchi deliveries.</p>
+          </div>
+        </div>
+
+        <div class="admin-hubs-grid" id="hubsGrid">
+          <!-- Populated from hubs list -->
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="admin_portal.js"></script>
+</body>
+</html>

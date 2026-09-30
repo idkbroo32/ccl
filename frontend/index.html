@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ranchi Mart - curated fashion, tech and lifestyle essentials.">
+  <title>Ranchi Mart | Shop your next favorite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/frontend/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body data-logged-in="false">
+  <div class="page-glow page-glow-one"></div>
+  <div class="page-glow page-glow-two"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Ranchi Mart home"><span>RANCHI</span> MART</a>
+    <div class="header-search">
+  <label class="sr-only" for="searchInput">Search products</label>
+  <input id="searchInput" class="search-input" type="search" placeholder="Search products, brands and more">
+  <button type="button" class="search-button" aria-label="Search products" onclick="searchProducts()">⌕</button>
+    </div>
+    <div class="header-actions">
+      <a href="#localHubs" class="hubs-top-link" id="navHubsLink" aria-label="View 4 verified local hubs in Ranchi">
+        <span class="live-dot-mini"></span> 4 Local Hubs
+      </a>
+      <a href="admin.html" class="admin-top-link" id="navAdminLink" onclick="handleAdminPortalNav(event)" aria-label="Open Admin Dashboard">
+        <span>⚡</span> Admin Panel
+      </a>
+      <button type="button" class="track-order-button" id="navTrackOrder" onclick="openOrderTrackingModal()" aria-label="Track your order">
+        <span class="track-icon">📦</span> Track Order
+      </button>
+      <button type="button" class="login-button" id="authButton" onclick="handleAuthButtonClick()"><span class="status-dot"></span><span class="auth-button-label">Sign in</span></button>
+      <button type="button" class="cart-button" id="navCart" aria-label="Open shopping cart">
+        <span class="cart-icon">↗</span> Cart <span class="cart-badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero-section reveal-on-load">
+      <div class="hero-copy">
+        <p class="eyebrow">THE EVERYDAY EDIT / 2026</p>
+  <h1>Find your <em>next favorite.</em></h1>
+  <p class="hero-lede">Fresh picks for every mood, every move, and every version of you. Curated with a little more personality.</p>
+  <div class="hero-actions">
+          <button type="button" class="primary-button" onclick="scrollToProducts()">Explore the edit <span>↗</span></button>
+          <button type="button" class="text-button" onclick="filterProductsByGender('women')">Shop women's edit <span>→</span></button>
+        </div>
+        <div class="hero-proof"><strong>4.9/5</strong><span>from 12k+ happy shoppers</span></div>
+      </div>
+      <div class="hero-art" aria-label="Fashion collection preview">
+  <div class="hero-orbit orbit-one"></div>
+  <div class="hero-orbit orbit-two"></div>
+  <div class="hero-card hero-card-main">
+          <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85" alt="Woman wearing a stylish jacket">
+          <span class="floating-label label-top">NEW / NOW</span>
+          <span class="floating-label label-bottom">soft tailoring</span>
+        </div>
+        <div class="hero-card hero-card-small">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=85" alt="Bright red sneaker">
+        </div>
+        <span class="hero-number">01</span>
+      </div>
+  </section>
+
+  <section class="collection-strip" aria-label="Shop collections">
+      <div class="section-kicker"><span>01</span><p>Shop the collection</p></div>
+      <div class="gender-tabs">
+        <button type="button" class="gender-tab is-selected" data-gender="all">All pieces</button>
+  <button type="button" class="gender-tab" data-gender="women">Women</button>
+  <button type="button" class="gender-tab" data-gender="men">Men</button>
+  <button type="button" class="gender-tab" data-gender="kids">Kids</button>
+        <button type="button" class="gender-tab" data-gender="unisex">Unisex</button>
+      </div>
+      <p class="collection-note">Thoughtful essentials<br>for every wardrobe.</p>
+  </section>
+
+  <section class="products-section" id="products">
+      <div class="section-heading reveal-on-load">
+        <div><p class="eyebrow">CURATED FOR YOU</p><h2>Good things, <em>in rotation.</em></h2></div>
+        <button type="button" class="text-button" onclick="showAllProducts()">View all pieces <span>→</span></button>
+      </div>
+      <div class="product-grid" id="productGrid">
+        <article class="product-card" data-product="Canvas Day Tote" data-price="1299" data-category="Accessories" data-gender="women" data-image="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=85">
+          <button type="button" class="wishlist" aria-label="Add Canvas Day Tote to wishlist">♡</button><div class="product-image"><img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=85" alt="Canvas Day Tote"></div><p class="product-category">Accessories / Women</p><h3>Canvas Day Tote</h3><div class="product-footer"><strong>₹1,299</strong><span>+ Add</span></div>
+        </article>
+        <article class="product-card" data-product="Studio Runner" data-price="2199" data-category="Shoes" data-gender="unisex" data-image="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=85">
+          <button type="button" class="wishlist" aria-label="Add Studio Runner to wishlist">♡</button><div class="product-image"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=85" alt="Studio Runner sneaker"></div><p class="product-category">Shoes / Unisex</p><h3>Studio Runner</h3><div class="product-footer"><strong>₹2,199</strong><span>+ Add</span></div>
+        </article>
+        <article class="product-card" data-product="Relaxed Linen Shirt" data-price="1699" data-category="Clothing" data-gender="men" data-image="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=800&q=85">
+          <button type="button" class="wishlist" aria-label="Add Relaxed Linen Shirt to wishlist">♡</button><div class="product-image"><img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=800&q=85" alt="Relaxed Linen Shirt"></div><p class="product-category">Clothing / Men</p><h3>Relaxed Linen Shirt</h3><div class="product-footer"><strong>₹1,699</strong><span>+ Add</span></div>
+        </article>
+        <article class="product-card" data-product="Cloud Knit Set" data-price="1899" data-category="Clothing" data-gender="women" data-image="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=85">
+          <button type="button" class="wishlist" aria-label="Add Cloud Knit Set to wishlist">♡</button><div class="product-image"><img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=85" alt="Cloud Knit Set"></div><p class="product-category">Clothing / Women</p><h3>Cloud Knit Set</h3><div class="product-footer"><strong>₹1,899</strong><span>+ Add</span></div>
+        </article>
+        <article class="product-card" data-product="Mini Makers Pack" data-price="899" data-category="Kids" data-gender="kids" data-image="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=800&q=85">
+          <button type="button" class="wishlist" aria-label="Add Mini Makers Pack to wishlist">♡</button><div class="product-image"><img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=800&q=85" alt="Mini Makers Pack"></div><p class="product-category">Play / Kids</p><h3>Mini Makers Pack</h3><div class="product-footer"><strong>₹899</strong><span>+ Add</span></div>
+        </article>
+        <article class="product-card" data-product="Everyday Smart Watch" data-price="2499" data-category="Tech" data-gender="unisex" data-image="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=85">
+          <button type="button" class="wishlist" aria-label="Add Everyday Smart Watch to wishlist">♡</button><div class="product-image"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=85" alt="Everyday Smart Watch"></div><p class="product-category">Tech / Unisex</p><h3>Everyday Smart Watch</h3><div class="product-footer"><strong>₹2,499</strong><span>+ Add</span></div>
+        </article>
+        <article class="product-card" data-product="Noise-Cut Headphones" data-price="3299" data-category="Tech" data-gender="unisex" data-image="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=85">
+          <button type="button" class="wishlist" aria-label="Add Noise-Cut Headphones to wishlist">♡</button><div class="product-image"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=85" alt="Noise-Cut Headphones"></div><p class="product-category">Tech / Unisex</p><h3>Noise-Cut Headphones</h3><div class="product-footer"><strong>₹3,299</strong><span>+ Add</span></div>
+        </article>
+        <article class="product-card" data-product="Pocket Bluetooth Speaker" data-price="1499" data-category="Tech" data-gender="unisex" data-image="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=85">
+          <button type="button" class="wishlist" aria-label="Add Pocket Bluetooth Speaker to wishlist">♡</button><div class="product-image"><img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=85" alt="Pocket Bluetooth Speaker"></div><p class="product-category">Tech / Unisex</p><h3>Pocket Bluetooth Speaker</h3><div class="product-footer"><strong>₹1,499</strong><span>+ Add</span></div>
+        </article>
+        <article class="product-card" data-product="City Oversized Blazer" data-price="2799" data-category="Clothing" data-gender="women" data-image="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=800&q=85">
+          <button type="button" class="wishlist" aria-label="Add City Oversized Blazer to wishlist">♡</button><div class="product-image"><img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=800&q=85" alt="City Oversized Blazer"></div><p class="product-category">Clothing / Women</p><h3>City Oversized Blazer</h3><div class="product-footer"><strong>₹2,799</strong><span>+ Add</span></div>
+        </article>
+        <article class="product-card" data-product="Straight-Fit Daily Denim" data-price="1999" data-category="Clothing" data-gender="men" data-image="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=800&q=85">
+          <button type="button" class="wishlist" aria-label="Add Straight-Fit Daily Denim to wishlist">♡</button><div class="product-image"><img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=800&q=85" alt="Straight-Fit Daily Denim"></div><p class="product-category">Clothing / Men</p><h3>Straight-Fit Daily Denim</h3><div class="product-footer"><strong>₹1,999</strong><span>+ Add</span></div>
+        </article>
+      </div>
+      <p id="emptyProducts" class="empty-products" hidden>No pieces match this collection yet. Try another edit.</p>
+    </section>
+
+    <!-- VERIFIED LOCAL HUBS & OFFICIAL STORE MANAGERS SECTION -->
+    <section class="hubs-section" id="localHubs">
+      <div class="hubs-header-wrap">
+        <div class="hubs-header-copy">
+          <span class="trust-badge-pill">
+            <span class="live-pulse-dot"></span> 4 VERIFIED RANCHI FULFILLMENT HUBS
+          </span>
+          <h2>Shop with 100% confidence. <em>Meet your local hubs.</em></h2>
+          <p class="hubs-subtitle">
+            Ranchi Mart operates dedicated physical fulfillment stores and express delivery hubs across Ranchi. Every order is hand-inspected, packed with care, and dispatched locally within 30 minutes by verified store managers.
+          </p>
+        </div>
+        <div class="hubs-guarantees">
+          <div class="guarantee-card">
+            <span class="g-icon">🛡️</span>
+            <div><strong>100% Genuine</strong><p>Direct from verified brands</p></div>
+          </div>
+          <div class="guarantee-card">
+            <span class="g-icon">⚡</span>
+            <div><strong>30-Min Dispatch</strong><p>Nearest local hub delivery</p></div>
+          </div>
+          <div class="guarantee-card">
+            <span class="g-icon">🔄</span>
+            <div><strong>Doorstep Returns</strong><p>Easy pickup from home</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hubs-grid">
+        <!-- Hub 1: Main Road Super Hub -->
+        <article class="hub-card">
+          <div class="hub-card-header">
+            <span class="hub-tag tag-super">✓ Verified Super Hub</span>
+            <span class="hub-status-live"><span class="pulse-green"></span> Open Now</span>
+          </div>
+          <div class="hub-manager-profile">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Rajesh Sharma" class="manager-photo">
+            <div>
+              <h3>Rajesh Sharma</h3>
+              <p class="manager-title">Senior Operations Head &amp; Hub Director</p>
+              <span class="manager-exp">8+ yrs in Retail Logistics</span>
+            </div>
+          </div>
+          <div class="hub-details">
+            <div class="hub-name-row">
+              <strong>Central Ranchi Super Hub &amp; Superstore</strong>
+            </div>
+            <p class="hub-address"><i class="fa-solid fa-location-dot"></i> Opp. GEL Church Complex, Main Road, Ranchi - 834001</p>
+            <div class="hub-pincodes">
+              <span>Coverage:</span> <strong>834001, 834002</strong> (Main Road, Hindpiri, Kadru)
+            </div>
+            <div class="hub-metrics">
+              <div><span class="m-val">25-40 min</span><span class="m-lbl">Avg Dispatch</span></div>
+              <div><span class="m-val">4.9 ★</span><span class="m-lbl">3,420+ Orders</span></div>
+              <div><span class="m-val">8 AM - 11 PM</span><span class="m-lbl">Daily Timing</span></div>
+            </div>
+          </div>
+          <div class="hub-actions">
+            <a href="tel:+919835124701" class="hub-call-btn"><i class="fa-solid fa-phone"></i> +91 98351 24701</a>
+            <span class="hub-verified-seal">Official Ranchi Mart Hub</span>
+          </div>
+        </article>
+
+        <!-- Hub 2: North Ranchi / Lalpur -->
+        <article class="hub-card">
+          <div class="hub-card-header">
+            <span class="hub-tag tag-express">⚡ Fast Dispatch Hub</span>
+            <span class="hub-status-live"><span class="pulse-green"></span> Open Now</span>
+          </div>
+          <div class="hub-manager-profile">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Pooja Verma" class="manager-photo">
+            <div>
+              <h3>Pooja Verma</h3>
+              <p class="manager-title">Lifestyle &amp; Fashion Hub Lead</p>
+              <span class="manager-exp">6+ yrs in Quality &amp; Apparel</span>
+            </div>
+          </div>
+          <div class="hub-details">
+            <div class="hub-name-row">
+              <strong>North Ranchi Express Dispatch Center</strong>
+            </div>
+            <p class="hub-address"><i class="fa-solid fa-location-dot"></i> Near Nucleus Mall, Circular Road, Lalpur, Ranchi - 834006</p>
+            <div class="hub-pincodes">
+              <span>Coverage:</span> <strong>834006, 834008</strong> (Lalpur, Tharpakhna, Kokar)
+            </div>
+            <div class="hub-metrics">
+              <div><span class="m-val">20-35 min</span><span class="m-lbl">Avg Dispatch</span></div>
+              <div><span class="m-val">4.8 ★</span><span class="m-lbl">2,890+ Orders</span></div>
+              <div><span class="m-val">7:30 AM - 11:30 PM</span><span class="m-lbl">Daily Timing</span></div>
+            </div>
+          </div>
+          <div class="hub-actions">
+            <a href="tel:+919431158219" class="hub-call-btn"><i class="fa-solid fa-phone"></i> +91 94311 58219</a>
+            <span class="hub-verified-seal">Official Ranchi Mart Hub</span>
+          </div>
+        </article>
+
+        <!-- Hub 3: South Ranchi / Doranda -->
+        <article class="hub-card">
+          <div class="hub-card-header">
+            <span class="hub-tag tag-tech">📦 Electronics &amp; Logistics Hub</span>
+            <span class="hub-status-live"><span class="pulse-green"></span> Open Now</span>
+          </div>
+          <div class="hub-manager-profile">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="Amitabh Roy" class="manager-photo">
+            <div>
+              <h3>Amitabh Roy</h3>
+              <p class="manager-title">Electronics &amp; Regional Hub Manager</p>
+              <span class="manager-exp">7+ yrs in Warehousing</span>
+            </div>
+          </div>
+          <div class="hub-details">
+            <div class="hub-name-row">
+              <strong>South Ranchi Regional Express Hub</strong>
+            </div>
+            <p class="hub-address"><i class="fa-solid fa-location-dot"></i> Near Old High Court, Doranda Market, Ranchi - 834002</p>
+            <div class="hub-pincodes">
+              <span>Coverage:</span> <strong>834002, 834050</strong> (Doranda, Hinoo, Birsa Chowk)
+            </div>
+            <div class="hub-metrics">
+              <div><span class="m-val">30-45 min</span><span class="m-lbl">Avg Dispatch</span></div>
+              <div><span class="m-val">4.9 ★</span><span class="m-lbl">2,150+ Orders</span></div>
+              <div><span class="m-val">8 AM - 10:30 PM</span><span class="m-lbl">Daily Timing</span></div>
+            </div>
+          </div>
+          <div class="hub-actions">
+            <a href="tel:+919771483620" class="hub-call-btn"><i class="fa-solid fa-phone"></i> +91 97714 83620</a>
+            <span class="hub-verified-seal">Official Ranchi Mart Hub</span>
+          </div>
+        </article>
+
+        <!-- Hub 4: West Ranchi / Kanke Road -->
+        <article class="hub-card">
+          <div class="hub-card-header">
+            <span class="hub-tag tag-quick">⚡ Quick Commerce Store</span>
+            <span class="hub-status-live"><span class="pulse-green"></span> Open Now</span>
+          </div>
+          <div class="hub-manager-profile">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80" alt="Sunita Singh" class="manager-photo">
+            <div>
+              <h3>Sunita Singh</h3>
+              <p class="manager-title">Quality Control &amp; Quick Store Supervisor</p>
+              <span class="manager-exp">5+ yrs in Customer Experience</span>
+            </div>
+          </div>
+          <div class="hub-details">
+            <div class="hub-name-row">
+              <strong>West Ranchi Quick-Delivery Store</strong>
+            </div>
+            <p class="hub-address"><i class="fa-solid fa-location-dot"></i> Rock Garden Road, Near CMPDI, Kanke Road, Ranchi - 834008</p>
+            <div class="hub-pincodes">
+              <span>Coverage:</span> <strong>834008, 834009</strong> (Kanke, Morabadi, Bariatu)
+            </div>
+            <div class="hub-metrics">
+              <div><span class="m-val">15-30 min</span><span class="m-lbl">Avg Dispatch</span></div>
+              <div><span class="m-val">4.9 ★</span><span class="m-lbl">1,980+ Orders</span></div>
+              <div><span class="m-val">7 AM - 11 PM</span><span class="m-lbl">Daily Timing</span></div>
+            </div>
+          </div>
+          <div class="hub-actions">
+            <a href="tel:+919304871954" class="hub-call-btn"><i class="fa-solid fa-phone"></i> +91 93048 71954</a>
+            <span class="hub-verified-seal">Official Ranchi Mart Hub</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="service-row">
+      <div><span>↗</span><h3>Free delivery</h3><p>On orders over ₹999</p></div><div><span>◌</span><h3>Easy returns</h3><p>30 days, no questions</p></div><div><span>✦</span><h3>Made for you</h3><p>Curated, never crowded</p></div>
+    </section>
+  </main>
+  <footer class="site-footer"><a class="brand" href="#top"><span>RANCHI</span> MART</a><p>Small discoveries. Big everyday energy.</p><span>© 2026 Ranchi Mart</span></footer>
+
+  <div id="productModal" class="overlay-modal" aria-hidden="true"><div class="product-detail-panel modal-panel"><button type="button" class="modal-close" data-close="productModal" aria-label="Close product details">×</button><div id="productDetailContent"></div></div></div>
+  <div id="cartModal" class="cart-modal" aria-hidden="true"><div class="cart-panel"><div class="cart-header"><div><p class="eyebrow">YOUR EDIT</p><h2>Your cart</h2></div><button type="button" class="modal-close" data-close="cartModal" aria-label="Close cart">×</button></div><div id="cartItems" class="cart-items"></div><div class="cart-summary"><span>Total</span><strong id="cartTotal">₹0</strong></div><button type="button" class="primary-button checkout-btn">Continue to payment <span>→</span></button></div></div>
+  <div id="paymentModal" class="overlay-modal" aria-hidden="true">
+    <div class="payment-panel modal-panel">
+      <button type="button" class="modal-close" data-close="paymentModal" aria-label="Close payment">×</button>
+      <p class="eyebrow">SECURE CHECKOUT</p>
+      <h2>Finish your order.</h2>
+      
+      <form id="paymentForm" class="payment-form">
+        <!-- 1. Delivery Address Section -->
+        <div class="checkout-section">
+          <div class="checkout-section-title">
+            <span class="step-badge">Step 1</span>
+            <strong>Delivery Address</strong>
+          </div>
+
+          <!-- Saved Address Preview (shown when address exists) -->
+          <div id="modalSavedAddressBox" class="address-card">
+            <div class="address-card-header">
+              <strong id="savedReceiverName">User</strong>
+              <span class="address-tag">Deliver to this address</span>
+            </div>
+            <p id="savedReceiverAddress" class="address-card-body"></p>
+            <div id="savedReceiverPhone" class="address-card-phone"></div>
+          </div>
+
+          <button type="button" id="btnToggleAddAddress" class="address-toggle-btn" onclick="toggleAddressForm()">
+            + Add New / Edit Delivery Address
+          </button>
+
+          <!-- Delivery Address Input Fields -->
+          <div id="modalAddressFields" class="address-fields-grid">
+            <div class="address-row-two">
+              <label>Receiver Full Name<input name="deliveryName" id="deliveryName" required placeholder="e.g. Abhishek Kumar"></label>
+              <label>Phone Number<input name="deliveryPhone" id="deliveryPhone" type="tel" required placeholder="e.g. 98765 43210"></label>
+            </div>
+            <label>Flat, House no., Building, Apartment<input name="deliveryStreet" id="deliveryStreet" required placeholder="e.g. House No. 12B, Green Park"></label>
+            <label>Area, Colony, Street, Landmark<input name="deliveryArea" id="deliveryArea" required placeholder="e.g. Circular Road, Near Nucleus Mall"></label>
+            <div class="address-row-two">
+              <label>City<input name="deliveryCity" id="deliveryCity" required value="Ranchi" placeholder="City"></label>
+              <label>Pincode<input name="deliveryPincode" id="deliveryPincode" inputmode="numeric" pattern="[0-9]{6}" required placeholder="e.g. 834001"></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Payment Method Section -->
+        <div class="checkout-section">
+          <div class="checkout-section-title">
+            <span class="step-badge">Step 2</span>
+            <strong>Payment Method</strong>
+          </div>
+          <fieldset>
+            <legend>Select payment option</legend>
+            <label class="radio-option"><input type="radio" name="method" value="card" checked> Credit / debit card</label>
+            <label class="radio-option"><input type="radio" name="method" value="cod"> Cash on delivery (Pay at doorstep)</label>
+          </fieldset>
+
+          <div id="modalCardFields">
+            <label>Cardholder name<input name="cardName" id="cardNameInput" required placeholder="Your full name"></label>
+            <label>Card number<input name="cardNumber" id="cardNumberInput" inputmode="numeric" pattern="[0-9 ]{12,19}" required placeholder="1234 5678 9012 3456"></label>
+            <div class="payment-row">
+              <label>Expiry<input name="expiry" id="expiryInput" required placeholder="MM / YY"></label>
+              <label>CVV<input name="cvv" id="cvvInput" inputmode="numeric" pattern="[0-9]{3,4}" required placeholder="123"></label>
+            </div>
+          </div>
+
+          <div id="modalCodNotice">
+            💵 <strong>Cash on Delivery:</strong> Pay safely with cash or UPI when your parcel arrives.
+          </div>
+        </div>
+
+        <button type="submit" class="primary-button" id="btnPlaceOrder">Place order <span>↗</span></button>
+      </form>
+    </div>
+  </div>
+  <div id="authModal" class="auth-modal" aria-hidden="true">
+    <div class="auth-modal-panel">
+      <button type="button" class="modal-close auth-close" data-close="authModal" aria-label="Close modal">×</button>
+      <p class="eyebrow" id="authModalEyebrow">WELCOME BACK</p>
+      <h2 id="authModalTitle">Sign in to shop</h2>
+
+      <div class="auth-modal-tabs">
+        <button type="button" class="auth-modal-tab is-active" id="modalTabLogin" onclick="switchAuthMode('login')">Sign in</button>
+        <button type="button" class="auth-modal-tab" id="modalTabSignup" onclick="switchAuthMode('signup')">Create a new account</button>
+      </div>
+
+      <form class="auth-form" id="authForm" data-mode="login">
+        <label class="auth-field-signup" id="fieldSignupName">Full name<input name="name" id="signupName" type="text" placeholder="Your full name"></label>
+        <label id="authEmailLabel">Username or Email<input name="email" id="authEmail" type="text" required placeholder="Username (admin / rajesh) or Email" autocomplete="username"></label>
+        <label>Password<input name="password" id="authPassword" type="password" required placeholder="••••••••" autocomplete="current-password"></label>
+        <label class="auth-field-signup" id="fieldSignupPhone">Phone number<input name="phone" id="signupPhone" type="tel" placeholder="+91 98765 43210"></label>
+        <label class="auth-field-signup" id="fieldSignupAddress">Delivery address<input name="address" id="signupAddress" type="text" placeholder="House no, Street, City"></label>
+        
+        <button type="submit" class="primary-button" id="authSubmitBtn">Sign in <span>→</span></button>
+      </form>
+
+      <div class="auth-switch-row">
+        <span id="authSwitchText">Don't have an account?</span>
+        <button type="button" class="auth-switch" id="authSwitchBtn" onclick="toggleAuthMode()">Create a new account</button>
+      </div>
+
+      <div class="demo-login" id="demoLoginBox">
+        <strong>⚡ Quick 1-Click Demo Login:</strong>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px;">
+          <button type="button" class="auth-switch" style="background: #eef2ff; color: #4338ca; border: 1px solid #c7d2fe; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;" onclick="quickFillStoreAuth('admin', 'admin123')">👑 Admin (admin)</button>
+          <button type="button" class="auth-switch" style="background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;" onclick="quickFillStoreAuth('rajesh', 'admin123')">🏢 Manager (rajesh)</button>
+          <button type="button" class="auth-switch" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; cursor: pointer;" onclick="quickFillStoreAuth('admin@pikumart.com', '123456')">🛒 Customer (Piku)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Tracking Modal -->
+  <div id="trackingModal" class="overlay-modal" aria-hidden="true">
+    <div class="tracking-panel modal-panel">
+      <button type="button" class="modal-close" data-close="trackingModal" aria-label="Close tracking">×</button>
+      <p class="eyebrow">LIVE DELIVERY RADAR</p>
+      <h2>Track your order.</h2>
+
+      <!-- Search Box -->
+      <div class="tracking-search-box">
+        <div class="tracking-input-wrap">
+          <input id="trackingInput" type="text" placeholder="Enter Order ID (e.g. RM-892415) or Mobile">
+          <button type="button" class="primary-button tracking-search-btn" onclick="handleTrackSearch()">
+            Track <span>↗</span>
+          </button>
+        </div>
+        <div class="tracking-demo-tags">
+          <span>Quick check:</span>
+          <button type="button" class="quick-tag-btn" onclick="quickTrackOrder('demo')">#RM-DEMO99</button>
+          <span id="quickRecentOrderTag"></span>
+        </div>
+      </div>
+
+      <!-- Recent Orders Bar -->
+      <div id="trackingRecentOrdersWrap" class="recent-orders-bar">
+        <span class="recent-label">Your Recent Orders:</span>
+        <div id="recentOrdersList" class="recent-orders-pills"></div>
+      </div>
+
+      <!-- Tracking Results Card -->
+      <div id="trackingResultCard" class="tracking-card">
+        <!-- Header Info -->
+        <div class="tracking-card-header">
+          <div>
+            <span class="order-id-label">ORDER ID</span>
+            <strong id="trackOrderCode" class="order-code-display">#RM-892415</strong>
+            <p id="trackOrderDate" class="order-date-text">Placed Today</p>
+          </div>
+          <div class="tracking-badge-wrap">
+            <span id="trackStatusBadge" class="status-pill status-in-transit">● In Transit</span>
+            <strong id="trackEtaText" class="eta-text">Est. Delivery: Within 2 Days</strong>
+          </div>
+        </div>
+
+        <!-- Visual Stepper Progress Bar -->
+        <div class="tracking-stepper">
+          <div class="step-item step-completed" id="stepPlaced">
+            <div class="step-circle">✓</div>
+            <div class="step-content">
+              <strong>Order Confirmed</strong>
+              <span id="stepPlacedTime">Order accepted & verified</span>
+            </div>
+          </div>
+          <div class="step-line step-line-active" id="line1"></div>
+
+          <div class="step-item step-completed" id="stepPacked">
+            <div class="step-circle">📦</div>
+            <div class="step-content">
+              <strong>Packed & Dispatched</strong>
+              <span id="stepPackedTime">Ranchi Sorting Hub</span>
+            </div>
+          </div>
+          <div class="step-line step-line-active" id="line2"></div>
+
+          <div class="step-item step-active" id="stepTransit">
+            <div class="step-circle">🚚</div>
+            <div class="step-content">
+              <strong>Out for Delivery</strong>
+              <span id="stepTransitTime">Delivery partner on route</span>
+            </div>
+          </div>
+          <div class="step-line" id="line3"></div>
+
+          <div class="step-item" id="stepDelivered">
+            <div class="step-circle">🏠</div>
+            <div class="step-content">
+              <strong>Delivered</strong>
+              <span id="stepDeliveredTime">To your doorstep</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Delivery Status & Tracking Notes Callout -->
+        <div class="live-delivery-update-box" id="liveDeliveryAlertBox">
+          <div class="live-update-badge">
+            <span class="live-radar-dot"></span> LIVE DISPATCH &amp; DELIVERY RADAR
+          </div>
+          <div class="live-update-content">
+            <div class="live-update-header-row">
+              <strong id="trackLiveStatusTitle" class="live-status-title">Order Status: Confirmed</strong>
+              <span id="trackUpdateTimestamp" class="live-timestamp-text"><i class="fa-regular fa-clock"></i> Just updated</span>
+            </div>
+            <p id="trackLiveNotes" class="live-notes-text">Package inspected and prepared for dispatch from local fulfillment hub.</p>
+          </div>
+        </div>
+
+        <!-- Courier Delivery Executive Info -->
+        <div class="courier-info-box">
+          <div class="courier-avatar">🛵</div>
+          <div class="courier-details">
+            <strong id="trackCourierName">Delivery Partner: Ramesh Kumar (Ranchi Mart Express)</strong>
+            <span>Contact: +91 98765-43210 • Contactless delivery available</span>
+          </div>
+          <span class="courier-tag">Express Delivery</span>
+        </div>
+
+        <!-- Fulfillment Hub & Local Dispatch Origin -->
+        <div class="origin-hub-box">
+          <div class="origin-hub-icon">🏬</div>
+          <div class="origin-hub-details">
+            <strong id="trackHubName">Dispatched from: Central Ranchi Super Hub (Main Road)</strong>
+            <span id="trackHubManager">Verified Hub Director: Rajesh Sharma (+91 98351 24701) • 100% Quality Inspected</span>
+            <span id="trackTrackingNotes">Latest order location update will appear here.</span>
+          </div>
+          <span class="hub-verified-pill">✓ Verified Hub</span>
+        </div>
+
+        <!-- Details Grid (Delivery Address + Items Ordered + Payment) -->
+        <div class="tracking-details-grid">
+          <!-- Delivery Address Column -->
+          <div class="track-info-col">
+            <h4>Delivery Address</h4>
+            <p id="trackReceiverName" class="track-person-name">Abhishek Kumar</p>
+            <p id="trackFullAddress" class="track-address-text">Circular Road, Lalpur, Ranchi - 834001</p>
+            <p id="trackPhone" class="track-phone-text">📞 +91 98765 43210</p>
+          </div>
+
+          <!-- Order Summary Column -->
+          <div class="track-info-col">
+            <h4>Order & Payment Summary</h4>
+            <div id="trackItemsList" class="track-items-mini"></div>
+            <div class="track-bill-row">
+              <span>Payment Mode:</span>
+              <strong id="trackPayMethod">Cash on delivery</strong>
+            </div>
+            <div class="track-bill-row total-row">
+              <span>Total Amount:</span>
+              <strong id="trackTotalAmount">₹1,499</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty / Not Found State -->
+      <div id="trackingNotFound" class="tracking-empty">
+        <span class="empty-icon">🔍</span>
+        <h3>Order not found</h3>
+        <p id="trackingNotFoundMsg">We couldn't find an order matching that ID. Please check your Order ID or try the demo order.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="cartMessage" class="cart-message" aria-live="polite"></div>
+  <script src="/frontend/script.js"></script>
+</body>
+</html>
+

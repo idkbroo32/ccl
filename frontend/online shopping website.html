@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranchi Mart - Online Shopping</title>
+
+<link rel="stylesheet" href="shopping website.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+    <div class="logo">
+        <span>RANCHI</span> MART
+    </div>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search products...">
+        <button onclick="searchProducts()">🔍</button>
+    </div>
+
+    <div class="header-actions">
+        <button class="icon-btn">♡</button>
+
+        <button class="cart-btn" onclick="openCart()">
+            🛒
+            <span id="cartCount">0</span>
+        </button>
+
+        <button class="login-btn">Login</button>
+    </div>
+
+</header>
+
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+    <a href="#home">Home</a>
+    <a href="#categories">Categories</a>
+    <a href="#products">Products</a>
+    <a href="#deals">Deals</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <p class="small-title">WELCOME TO RANCHI MART</p>
+
+        <h1>
+            Shop Smart.<br>
+            <span>Live Better.</span>
+        </h1>
+
+        <p>
+            Discover amazing products at unbeatable prices.
+            Fast delivery, secure payments and great deals.
+        </p>
+
+        <button class="shop-btn" onclick="scrollToProducts()">
+            Shop Now →
+        </button>
+
+    </div>
+
+    <div class="hero-image">
+        🛍️
+    </div>
+
+</section>
+
+
+<!-- CATEGORIES -->
+<section class="section" id="categories">
+
+    <div class="section-heading">
+        <div>
+            <p class="section-small">EXPLORE</p>
+            <h2>Shop by Category</h2>
+        </div>
+    </div>
+
+    <div class="categories">
+
+        <div class="category" onclick="filterCategory('electronics')">
+            <div class="category-icon">📱</div>
+            <h3>Electronics</h3>
+            <p>120+ Products</p>
+        </div>
+
+        <div class="category" onclick="filterCategory('fashion')">
+            <div class="category-icon">👕</div>
+            <h3>Fashion</h3>
+            <p>250+ Products</p>
+        </div>
+
+        <div class="category" onclick="filterCategory('home')">
+            <div class="category-icon">🏠</div>
+            <h3>Home</h3>
+            <p>180+ Products</p>
+        </div>
+
+        <div class="category" onclick="filterCategory('beauty')">
+            <div class="category-icon">✨</div>
+            <h3>Beauty</h3>
+            <p>90+ Products</p>
+        </div>
+
+        <div class="category" onclick="filterCategory('sports')">
+            <div class="category-icon">⚽</div>
+            <h3>Sports</h3>
+            <p>75+ Products</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DEAL BANNER -->
+<section class="deal-banner" id="deals">
+
+    <div>
+        <p>LIMITED TIME OFFER</p>
+        <h2>🔥 Mega Shopping Sale</h2>
+        <span>Get up to 70% OFF on selected products.</span>
+    </div>
+
+    <button onclick="scrollToProducts()">View Deals →</button>
+
+</section>
+
+
+<!-- PRODUCTS -->
+<section class="section" id="products">
+
+    <div class="section-heading">
+
+        <div>
+            <p class="section-small">OUR STORE</p>
+            <h2>Popular Products</h2>
+        </div>
+
+        <button class="view-all" onclick="showAllProducts()">
+            View All →
+        </button>
+
+    </div>
+
+
+    <div class="products" id="productContainer">
+
+        <!-- PRODUCT 1 -->
+        <div class="product-card" data-category="electronics">
+
+            <button class="wishlist">♡</button>
+
+            <div class="product-image">
+                🎧
+            </div>
+
+            <div class="product-info">
+
+                <p class="product-category">Electronics</p>
+
+                <h3>Wireless Headphones</h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐ <span>(124)</span>
+                </div>
+
+                <div class="price">
+                    <strong>₹1,499</strong>
+                    <del>₹2,999</del>
+                    <span>50% OFF</span>
+                </div>
+
+                <button class="add-cart"
+                        onclick="addToCart('Wireless Headphones',1499)">
+                    Add to Cart
+                </button>
+
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 2 -->
+        <div class="product-card" data-category="electronics">
+
+            <button class="wishlist">♡</button>
+
+            <div class="product-image">
+                ⌚
+            </div>
+
+            <div class="product-info">
+
+                <p class="product-category">Electronics</p>
+
+                <h3>Smart Watch</h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐☆ <span>(98)</span>
+                </div>
+
+                <div class="price">
+                    <strong>₹2,199</strong>
+                    <del>₹4,499</del>
+                    <span>51% OFF</span>
+                </div>
+
+                <button class="add-cart"
+                        onclick="addToCart('Smart Watch',2199)">
+                    Add to Cart
+                </button>
+
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 3 -->
+        <div class="product-card" data-category="fashion">
+
+            <button class="wishlist">♡</button>
+
+            <div class="product-image">
+                👟
+            </div>
+
+            <div class="product-info">
+
+                <p class="product-category">Fashion</p>
+
+                <h3>Running Shoes</h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐ <span>(231)</span>
+                </div>
+
+                <div class="price">
+                    <strong>₹1,799</strong>
+                    <del>₹3,499</del>
+                    <span>49% OFF</span>
+                </div>
+
+                <button class="add-cart"
+                        onclick="addToCart('Running Shoes',1799)">
+                    Add to Cart
+                </button>
+
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 4 -->
+        <div class="product-card" data-category="home">
+
+            <button class="wishlist">♡</button>
+
+            <div class="product-image">
+                💡
+            </div>
+
+            <div class="product-info">
+
+                <p class="product-category">Home</p>
+
+                <h3>Smart LED Lamp</h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐☆ <span>(87)</span>
+                </div>
+
+                <div class="price">
+                    <strong>₹799</strong>
+                    <del>₹1,599</del>
+                    <span>50% OFF</span>
+                </div>
+
+                <button class="add-cart"
+                        onclick="addToCart('Smart LED Lamp',799)">
+                    Add to Cart
+                </button>
+
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 5 -->
+        <div class="product-card" data-category="beauty">
+
+            <button class="wishlist">♡</button>
+
+            <div class="product-image">
+                🧴
+            </div>
+
+            <div class="product-info">
+
+                <p class="product-category">Beauty</p>
+
+                <h3>Skin Care Kit</h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐⭐ <span>(154)</span>
+                </div>
+
+                <div class="price">
+                    <strong>₹999</strong>
+                    <del>₹1,999</del>
+                    <span>50% OFF</span>
+                </div>
+
+                <button class="add-cart"
+                        onclick="addToCart('Skin Care Kit',999)">
+                    Add to Cart
+                </button>
+
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 6 -->
+        <div class="product-card" data-category="sports">
+
+            <button class="wishlist">♡</button>
+
+            <div class="product-image">
+                🏏
+            </div>
+
+            <div class="product-info">
+
+                <p class="product-category">Sports</p>
+
+                <h3>Cricket Bat</h3>
+
+                <div class="rating">
+                    ⭐⭐⭐⭐☆ <span>(76)</span>
+                </div>
+
+                <div class="price">
+                    <strong>₹1,299</strong>
+                    <del>₹2,499</del>
+                    <span>48% OFF</span>
+                </div>
+
+                <button class="add-cart"
+                        onclick="addToCart('Cricket Bat',1299)">
+                    Add to Cart
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+<section class="features">
+
+    <div class="feature">
+        <div>🚚</div>
+        <h3>Fast Delivery</h3>
+        <p>Quick and reliable delivery.</p>
+    </div>
+
+    <div class="feature">
+        <div>🔒</div>
+        <h3>Secure Payment</h3>
+        <p>Your payments are protected.</p>
+    </div>
+
+    <div class="feature">
+        <div>↩️</div>
+        <h3>Easy Returns</h3>
+        <p>Simple and hassle-free returns.</p>
+    </div>
+
+    <div class="feature">
+        <div>💬</div>
+        <h3>24/7 Support</h3>
+        <p>We're here whenever you need us.</p>
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer id="about">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+            <h2><span>RANCHI</span> MART</h2>
+            <p>
+                Your trusted online shopping destination.
+                Quality products at affordable prices.
+            </p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#deals">Deals</a>
+            <a href="#about">About</a>
+        </div>
+
+        <div>
+            <h3>Customer Service</h3>
+            <a href="#">Help Center</a>
+            <a href="#">Returns</a>
+            <a href="#">Shipping</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+
+        <div id="contact">
+            <h3>Contact Us</h3>
+            <p>📧 support@pikumart.com</p>
+            <p>📞 +91 98765 43210</p>
+            <p>📍 India</p>
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        © 2026 Ranchi Mart. All Rights Reserved.
+    </div>
+
+</footer>
+
+
+<!-- CART MODAL -->
+<div class="cart-modal" id="cartModal">
+
+    <div class="cart-box">
+
+        <button class="close-cart" onclick="closeCart()">×</button>
+
+        <h2>🛒 Your Cart</h2>
+
+        <div id="cartItems"></div>
+
+        <div class="cart-total">
+            <span>Total</span>
+            <strong id="cartTotal">₹0</strong>
+        </div>
+
+        <button class="checkout-btn" onclick="checkout()">
+            Proceed to Checkout
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
